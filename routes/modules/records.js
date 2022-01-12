@@ -14,4 +14,12 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then((todo) => res.render('detail', { todo }))
+    .catch(error => console.log(error))
+})
+
 module.exports = router
