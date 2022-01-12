@@ -1,1 +1,7 @@
-<h2>This is Expense Tracker</h2>
+<ul>
+  {{#each records}}
+    <li>
+      {{this.name}}/{{this.date}}/{{this.amount}}
+    </li>
+  {{/each}}
+</ul>
