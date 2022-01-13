@@ -1,7 +1,8 @@
-<form action="/records/{{ record._id }}?_method=PUT" method="POST">
-  <input type="text" placeholder="name" name="name" value="{{ record.name }}">
-  <input type="date" placeholder="date" name="date" value="{{ record.date }}">
-  <input type="number" placeholder="number" name="amount" value="{{ record.amount }}">
-  <button type="submit">送出</button>
-  <a href="/">返回</a>
+<form action="/records/{{ record._id }}?_method=PUT" method="POST" style="display: inline;">
+  <div class="input-group">
+    <input class="form-control" type="text" placeholder="name" name="name" value="{{ record.name }}">
+    <input class="form-control" type="date" placeholder="date" name="date" value="{{ record.date }}">
+    <input class="form-control" type="number" placeholder="number" name="amount" value="{{ record.amount }}">
+    <button class="btn btn-success" type="submit">送出</button>
+  </div>
 </form>
