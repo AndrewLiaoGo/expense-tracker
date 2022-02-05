@@ -17,8 +17,8 @@ router.get('/new', (req, res) => {
 
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
-  const id = req.params.id
-  return Record.findOne({ id, userId })
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .lean()
     .then((record) => {
       record.date = record.date.toISOString().split('T')[0]
@@ -29,9 +29,9 @@ router.get('/:id/edit', (req, res) => {
 
 router.put('/:id', (req, res) => {
   const userId = req.user._id
-  const id = req.params.id
+  const _id = req.params.id
   const { name, date, amount } = req.body
-  return Record.findOne({ id, userId })
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.name = name
       record.date = date
@@ -44,8 +44,8 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
-  const id = req.params.id
-  return Record.findOne({ id, userId })
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
