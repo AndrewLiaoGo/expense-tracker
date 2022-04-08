@@ -15,10 +15,13 @@ router.get('/', async (req, res) => {
     .lean()
     .sort({ _id: 'asc' })
     .then(records => {
+      let totalAmount = 0
       for (let record of records) {
         record.date = record.date.toISOString().split('T')[0]
+        
+        totalAmount += record.amount
       }
-      res.render('index', { categories, records })
+      res.render('index', { categories, records, totalAmount })
     })
     .catch(error => console.error(error))
 })
