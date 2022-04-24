@@ -20,6 +20,9 @@ const port = process.env.PORT
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+// setting static files
+app.use(express.static('public'))
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
