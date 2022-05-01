@@ -1,13 +1,17 @@
 <div class="d-flex justify-content-center dropdown mb-3">
-  <a class="btn btn-outline-secondary dropdown-toggle form-control" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-    aria-expanded="false">
+  <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuLink"
+    data-bs-toggle="dropdown" aria-expanded="false">
     類別
-  </a>
+  </button>
 
   <ul class="dropdown-menu form-control" aria-labelledby="dropdownMenuLink">
-    {{#each categories}}
-    <li><a class="dropdown-item" href="#">{{this.name}}</a></li>
-    {{/each}}
+    <form action="/">
+      <li><button class="dropdown-item" type="submit" name="categoryFilter" value="0">全部</button></li>
+      {{#each categories}}
+      <li><button class="dropdown-item" type="submit" name="categoryFilter" value="{{this._id}}">{{this.name}}</button>
+      </li>
+      {{/each}}
+    </form>
   </ul>
 </div>
 
@@ -22,14 +26,11 @@
     <div class="row">
       <div class="col-auto me-auto d-flex">
         <div class="d-flex align-items-center">
-          <i class="{{this.icon}}">i</i>
+          <i class="{{this.icon}}"></i>
           <div class="d-flex row">
             <span class="ms-3">{{ this.name }}</span>
             <span class="ms-3">{{ this.date }}</span>
           </div>
-        </div>
-        <div class="d-flex align-items-center">
-          
         </div>
       </div>
       <div class="col-auto">

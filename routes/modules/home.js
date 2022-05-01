@@ -4,34 +4,41 @@ const router = express.Router()
 const Category = require('../../models/category')
 const Record = require('../../models/record')
 
-const CATEGORY = {
-  家居物業: "https://fontawesome.com/icons/home?style=solid",
-  交通出行: "https://fontawesome.com/icons/shuttle-van?style=solid",
-  休閒娛樂: "https://fontawesome.com/icons/grin-beam?style=solid",
-  餐飲食品: "https://fontawesome.com/icons/utensils?style=solid",
-  其他: "https://fontawesome.com/icons/pen?style=solid"
-}
-
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   const userId = req.user._id
-  const categories = await Category.find({})
-    .lean()
-    .sort({ _id: 'asc' })
-    .then()
-    .catch(error => console.error(error))
+  const filteredValue = req.query.categoryFilter
   Record.find({ userId })
     .lean()
     .sort({ _id: 'asc' })
     .then(records => {
-      let totalAmount = 0
-      for (let record of records) {
-        record.date = record.date.toISOString().split('T')[0]
-        
-        totalAmount += record.amount
-      }
-      res.render('index', { categories, records, totalAmount })
+      return Category.find()
+        .lean()
+        .then((categories) => {
+          let filteredRecords = records
+          let totalAmount = 0
+          let filteredAmount = 0
+          let amountArray = []
+
+          records.forEach(record => {
+            const categoryId = record.categoryId
+            record.icon = categories.filter(category => categoryId.equals(category._id))[0].icon
+            record.date = record.date.toISOString().split('T')[0]
+            totalAmount += record.amount
+          })
+
+          if (filteredValue) {
+            if (filteredValue !== "0") {
+              filteredRecords = records.filter(item => item.categoryId.equals(filteredValue))
+              amountArray = records.filter(item => item.categoryId.equals(filteredValue))
+              amountArray.forEach(item => filteredAmount += item.amount)
+              totalAmount = filteredAmount
+            }
+          }
+
+          return res.render('index', { records: filteredRecords, categories, totalAmount })
+        })
+        .catch(error => console.error(error))
     })
-    .catch(error => console.error(error))
 })
 
 module.exports = router
