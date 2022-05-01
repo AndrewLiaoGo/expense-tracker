@@ -1,8 +1,14 @@
 <form action="/records/{{ record._id }}?_method=PUT" method="POST" style="display: inline;">
   <div class="input-group">
-    <input class="form-control" type="text" placeholder="name" name="name" value="{{ record.name }}">
-    <input class="form-control" type="date" placeholder="date" name="date" value="{{ record.date }}">
-    <input class="form-control" type="number" placeholder="number" name="amount" value="{{ record.amount }}">
+    <input class="form-control" type="text" placeholder="名稱" name="name" value="{{ record.name }}">
+    <input class="form-control" type="date" placeholder="日期" name="date" value="{{ record.date }}">
+    <input class="form-control" type="number" placeholder="金額" name="amount" value="{{ record.amount }}">
+    <select class="form-select" aria-label="Default select example" name="categoryId">
+      <option value='' disabled selected hidden>Select</option>
+      {{#each categories}}
+      <option value="{{ this._id }}">{{ this.name }}</option>
+      {{/each}}
+    </select>
     <button class="btn btn-success" type="submit">送出</button>
   </div>
 </form>

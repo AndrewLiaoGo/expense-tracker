@@ -1,8 +1,14 @@
 <form action="/records" method="POST" style="display: inline;">
   <div class="input-group">
-    <input class="form-control" type="text" placeholder="name" name="name">
-    <input class="form-control" type="date" placeholder="date" name="date">
-    <input class="form-control" type="number" placeholder="number" name="amount">
+    <input class="form-control" type="text" placeholder="名稱" name="name">
+    <input class="form-control" type="date" placeholder="日期" name="date">
+    <input class="form-control" type="number" placeholder="金額" name="amount">
+    <select class="form-select" aria-label="Default select example" name="categoryId">
+      <option value='' disabled selected hidden>類別</option>
+      {{#each category}}
+      <option value="{{ this._id }}">{{ this.name }}</option>
+      {{/each}}
+    </select>
     <button class="btn btn-success" type="submit">新增支出</button>
   </div>
 </form>

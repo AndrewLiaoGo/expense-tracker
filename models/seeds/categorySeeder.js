@@ -9,7 +9,7 @@ const categories = [
   {
     id: 1,
     name: '家居物業',
-    icon: "https://fontawesome.com/icons/home?style=solid"
+    icon: 'fa-solid fa-house'
   },
   {
     id: 2,
