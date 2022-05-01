@@ -8,23 +8,23 @@ const db = require('../../config/mongoose')
 const categories = [
   {
     name: '家居物業',
-    icon: "fa-solid fa-house"
+    icon: "fas fa-home"
   },
   {
     name: '交通出行',
-    icon: "fa-solid fa-van-shuttle"
+    icon: "fas fa-shuttle-van"
   },
   {
     name: '休閒娛樂',
-    icon: "fa-solid fa-face-grin-beam"
+    icon: "fas fa-grin-beam"
   },
   {
     name: '餐飲食品',
-    icon: "fa-solid fa-utensils"
+    icon: "fas fa-utensils"
   },
   {
     name: '其他',
-    icon: "fa-solid fa-pen"
+    icon: "fas fa-pen"
   }
 ]
 
