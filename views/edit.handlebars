@@ -4,7 +4,10 @@
     <input class="form-control" type="date" placeholder="日期" name="date" value="{{ record.date }}">
     <input class="form-control" type="number" placeholder="金額" name="amount" value="{{ record.amount }}">
     <select class="form-select" aria-label="Default select example" name="categoryId">
+      {{#if category}}
       <option value='' disabled selected hidden>類別</option>
+      <option value="{{ category._id }}" selected hidden>{{ category.name }}</option>
+      {{/if}}
       {{#each categories}}
       <option value="{{ this._id }}">{{ this.name }}</option>
       {{/each}}

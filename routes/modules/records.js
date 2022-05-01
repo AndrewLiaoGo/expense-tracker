@@ -45,6 +45,7 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
+  console.log(req.body)
   const { name, date, amount, categoryId } = req.body
   return Record.findOne({ _id, userId })
     .then(record => {
