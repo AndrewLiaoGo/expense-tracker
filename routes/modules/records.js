@@ -6,7 +6,7 @@ const Record = require('../../models/record')
 router.post('/', (req, res) => {
   const userId = req.user._id
   const { name, date, amount } = req.body
-  return Record.create({ name, date, amount, userId })
+  return Record.create({ name, date, amount, userId, categoryId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
