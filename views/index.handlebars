@@ -1,7 +1,12 @@
 <div class="d-flex justify-content-center dropdown mb-3">
   <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuLink"
     data-bs-toggle="dropdown" aria-expanded="false">
-    類別
+    類別：
+    {{#if filteredName}}
+    {{filteredName}}
+    {{else}}
+    全部
+    {{/if}}
   </button>
 
   <ul class="dropdown-menu form-control" aria-labelledby="dropdownMenuLink">

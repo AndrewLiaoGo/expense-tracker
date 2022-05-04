@@ -7,6 +7,7 @@ const Record = require('../../models/record')
 router.get('/', (req, res) => {
   const userId = req.user._id
   const filteredValue = req.query.categoryFilter
+  let filteredName = ''
   Record.find({ userId })
     .lean()
     .sort({ _id: 'asc' })
@@ -28,6 +29,7 @@ router.get('/', (req, res) => {
 
           if (filteredValue) {
             if (filteredValue !== "0") {
+              filteredName = categories.filter(category => category._id.equals(filteredValue))[0].name
               filteredRecords = records.filter(item => item.categoryId.equals(filteredValue))
               amountArray = records.filter(item => item.categoryId.equals(filteredValue))
               amountArray.forEach(item => filteredAmount += item.amount)
@@ -35,7 +37,7 @@ router.get('/', (req, res) => {
             }
           }
 
-          return res.render('index', { records: filteredRecords, categories, totalAmount })
+          return res.render('index', { records: filteredRecords, categories, totalAmount, filteredName })
         })
         .catch(error => console.error(error))
     })
